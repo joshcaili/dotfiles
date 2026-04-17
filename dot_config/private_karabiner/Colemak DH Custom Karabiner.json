@@ -1,0 +1,20 @@
+{
+    "description": "Change double tap tab to caps lock",
+    "manipulators": [
+      {//second tap triggers caps lock
+        "type": "basic",
+        "from": { key_code: "tab", "modifiers": { "optional": ["any"] } },
+        "to": [{ key_code: "a" }],
+        "conditions": [{ "type": "variable_if", "name": "tab pressed", "value": 1 }]
+      },
+      {//first tap sets variable
+        "type": "basic",
+        "from": { "key_code": "tab", "modifiers": { "optional": ["any"] } },
+        "to": [{ "set_variable": { "name": "tab pressed", "value": 1 } },
+        { key_code: "tab" } ], //@ts-ignore
+         parameters: { "basic.to_delayed_action_delay_milliseconds": 200  },
+        "to_delayed_action": { "to_if_canceled": [{ "set_variable": { "name": "tab pressed", "value": 0 } }],
+          "to_if_invoked": [{ "set_variable": { "name": "tab pressed", "value": 0 } }] }
+      }
+    ]                           
+  },   

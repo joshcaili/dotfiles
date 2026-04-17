@@ -1,0 +1,174 @@
+{
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.2",
+  "schemes" : [
+    {
+      "if" : {
+        "device" : {
+          "category" : "trackpad",
+          "productID" : "0x342",
+          "productName" : "Apple Internal Keyboard \/ Trackpad",
+          "vendorID" : "0x5ac"
+        }
+      },
+      "pointer" : {
+        "acceleration" : 0,
+        "disableAcceleration" : true,
+        "redirectsToScroll" : false,
+        "speed" : "unset"
+      },
+      "scrolling" : {
+        "acceleration" : {
+          "vertical" : 1.63
+        },
+        "distance" : {
+          "vertical" : "auto"
+        },
+        "modifiers" : {
+          "vertical" : {
+            "command" : {
+              "scale" : 10,
+              "type" : "changeSpeed"
+            }
+          }
+        },
+        "reverse" : {
+          "vertical" : false
+        },
+        "speed" : {
+          "vertical" : 0
+        }
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0x27da",
+          "productName" : "Karabiner DriverKit VirtualHIDPointing 1.8.0",
+          "serialNumber" : "pqrs.org:Karabiner-DriverKit-VirtualHIDPointing",
+          "vendorID" : "0x16c0"
+        }
+      },
+      "pointer" : {
+        "acceleration" : 0.7737,
+        "disableAcceleration" : true,
+        "speed" : 0.1645
+      },
+      "scrolling" : {
+        "acceleration" : {
+          "vertical" : 7.74
+        },
+        "distance" : {
+          "vertical" : "auto"
+        },
+        "reverse" : {
+          "vertical" : false
+        },
+        "speed" : {
+          "vertical" : 6.08
+        }
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0xb034",
+          "productName" : "MX Master 3S",
+          "serialNumber" : "710872ED",
+          "vendorID" : "0x46d"
+        }
+      },
+      "pointer" : {
+        "acceleration" : 0.6594,
+        "disableAcceleration" : true
+      },
+      "scrolling" : {
+        "acceleration" : {
+          "vertical" : 3.89
+        },
+        "distance" : {
+          "vertical" : "auto"
+        },
+        "reverse" : {
+          "vertical" : false
+        },
+        "speed" : {
+          "vertical" : 128
+        }
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0xc088",
+          "productName" : "G Pro Wireless Gaming Mouse",
+          "serialNumber" : "153068253B4FC002",
+          "vendorID" : "0x46d"
+        }
+      },
+      "pointer" : {
+        "acceleration" : 0.1303,
+        "disableAcceleration" : true
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0x2532",
+          "productName" : "Gaming Mouse",
+          "vendorID" : "0x93a"
+        }
+      },
+      "pointer" : {
+        "acceleration" : 0.11,
+        "speed" : 0.2946
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0x34",
+          "productName" : "Usb Mouse",
+          "vendorID" : "0x1c4f"
+        }
+      },
+      "pointer" : {
+        "acceleration" : 0.2037
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0xc077",
+          "productName" : "USB Optical Mouse",
+          "vendorID" : "0x46d"
+        }
+      },
+      "scrolling" : {
+        "reverse" : {
+          "vertical" : true
+        }
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "category" : "mouse",
+          "productID" : "0xfa7b",
+          "productName" : "Xlite Mini Wireless",
+          "vendorID" : "0x25a7"
+        }
+      },
+      "scrolling" : {
+        "reverse" : {
+          "vertical" : true
+        }
+      }
+    }
+  ]
+}

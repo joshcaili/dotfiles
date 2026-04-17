@@ -1,0 +1,179 @@
+# This is a demo config to showcase some of the most important commands.
+# It is meant to be changed and configured, as it is intentionally kept sparse.
+# For a (much) more advanced configuration example see my dotfiles:
+# https://github.com/FelixKratz/dotfiles
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+ITEM_DIR="$CONFIG_DIR/items"
+
+source "$CONFIG_DIR/colors.sh" # Loads all defined colors
+##### Bar Appearance #####
+# Configuring the general appearance of the bar.
+# These are only some of the options available. For all options see:
+# https://felixkratz.github.io/SketchyBar/config/bar
+# If you are looking for other colors, see the color picker:
+# https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
+
+sketchybar --bar height=34        \
+                 blur_radius=30   \
+                  position=top     \
+                  sticky=off       \
+                  padding_left=5  \
+                  padding_right=5 \
+                  hidden=on        \
+                  color=$BAR_COLOR
+
+##### Monitor Detection #####
+# Detect internal display
+INTERNAL_DISPLAY=$(sketchybar --query displays | jq -s '.[]' | jq -r '.[] | select((.UUID | type == "string" and test("39100D5C|Color LCD")) or .DirectDisplayID == 1) | .DirectDisplayID' | head -n 1)
+
+
+
+##### Changing Defaults #####
+# We now change some default values, which are applied to all further items.
+# For a full list of all available item properties see:
+# https://felixkratz.github.io/SketchyBar/config/items
+sketchybar --default icon.font="Hack Nerd Font:Bold:15.0"  \
+                     icon.color=$WHITE                 \
+                     label.font="SF Pro:Semibold:15.0" \
+                     label.color=$WHITE                \
+                     background.color=$ITEM_BG_COLOR       \
+                     background.corner_radius=5            \
+                     background.height=24                  \
+                     padding_left=5                        \
+                     padding_right=5                       \
+                     label.padding_left=4                  \
+                     label.padding_right=10                \
+                     icon.padding_left=10                  \
+                     icon.padding_right=4
+#
+# NOTE: App icons in this setup come from `plugins/icon_map_fn.sh`, which
+# returns Nerd Font icon tokens (e.g. `:figma:`, `:discord:`). Make sure the
+# icon font is a Nerd Font so those tokens render correctly.
+
+
+##### Adding Mission Control Space Indicators #####
+# Let's add some mission control spaces:
+# https://felixkratz.github.io/SketchyBar/config/components#space----associate-mission-control-spaces-with-an-item
+# to indicate active and available mission control spaces.
+
+# SPACE_ICONS=("1" "2" "3" "4" "5" "6" "7" "8" "9" "10")
+# for i in "${!SPACE_ICONS[@]}"
+# do
+#   sid="$(($i+1))"
+#   space=(
+#     space="$sid"
+#     icon="${SPACE_ICONS[i]}"
+#     icon.padding_left=7
+#     icon.padding_right=7
+#     background.color=0x40ffffff
+#     background.corner_radius=5
+#     background.height=25
+#     label.drawing=off
+#     script="$PLUGIN_DIR/space.sh"
+#     click_script="yabai -m space --focus $sid"
+#   )
+#   sketchybar --add space space."$sid" left --set space."$sid" "${space[@]}"
+# done
+
+# in ~/.config/sketchybar/sketchybarrc
+
+# ... defaults above ...
+
+#Aerospace spaces (simple indicator)
+# sketchybar --add event aerospace_workspace_change
+
+# for sid in $(aerospace list-workspaces --all); do
+#     sketchybar --add item space.$sid left \
+#         --subscribe space.$sid aerospace_workspace_change \
+#         --set space.$sid \
+#         background.color=0x44ffffff \
+#         background.corner_radius=5 \
+#         background.height=20 \
+#         background.drawing=off \
+#         label="$sid" \
+#         click_script="aerospace workspace $sid" \
+#         script="$CONFIG_DIR/plugins/aerospace.sh $sid"
+# done
+
+#!/bin/bash
+sketchybar --add event aerospace_workspace_change
+
+SPACE_SIDS=(backspace tab quote B C D E F G H I J K L M N P Q R S T U W X Y Z semicolon A space O v)
+
+for sid in "${SPACE_SIDS[@]}"; do
+  sketchybar --add item space.$sid left \
+    --subscribe space.$sid aerospace_workspace_change \
+    --set space.$sid \
+      icon="" \
+      label="$sid" \
+      label.font="SF Pro:Semibold:16.0" \
+      label.padding_right=5 \
+      label.y_offset=-1 \
+      background.color=0x44ffffff \
+      background.corner_radius=5 \
+      background.height=20 \
+      background.drawing=off \
+      click_script="aerospace workspace $sid" \
+      script="$CONFIG_DIR/plugins/space.sh $sid"
+done
+
+# ##### Adding Left Items #####
+# # We add some regular items to the left side of the bar, where
+# # only the properties deviating from the current defaults need to be set
+
+# sketchybar --add item chevron left \
+#            --set chevron icon= label.drawing=off \
+#            --add item front_app left \
+#            --set front_app icon.drawing=off script="$PLUGIN_DIR/front_app.sh" \
+#            --subscribe front_app front_app_switched
+
+##### Adding Right Items #####
+# In the same way as the left items we can add items to the right side.
+# Additional position (e.g. center) are available, see:
+# https://felixkratz.github.io/SketchyBar/config/items#adding-items-to-sketchybar
+
+# Some items refresh on a fixed cycle, e.g. the clock runs its script once
+# every 10s. Other items respond to events they subscribe to, e.g. the
+# volume.sh script is only executed once an actual change in system audio
+# volume is registered. More info about the event system can be found here:
+# https://felixkratz.github.io/SketchyBar/config/events
+source $ITEM_DIR/front_app.sh
+source $ITEM_DIR/calendar.sh
+source $ITEM_DIR/volume.sh
+source $ITEM_DIR/battery.sh
+
+# Optional: Bracket left items to keep them grouped
+# sketchybar --add bracket left_items '/space\..*/' front_app \
+#            --set left_items background.color=0x44ffffff \
+#                             background.corner_radius=5 \
+#                             background.height=20
+
+
+
+# -- Left Side Items --
+
+
+
+sketchybar --bar display=all
+
+##### Notch Dummy (Internal Only) #####
+# This provides the physical space for the notch. It is only visible on the internal display.
+# notch_wrap.sh dynamically moves it to the correct order among the left items.
+sketchybar --add item notch_dummy left \
+           --set notch_dummy display=$INTERNAL_DISPLAY \
+                             width=260 \
+                             drawing=off \
+                             background.drawing=off \
+                             icon.drawing=off \
+                             label.drawing=off
+
+##### Dynamic Notch Wrap #####
+# Listens to changes and moves notch_dummy
+sketchybar --add item notch_wrapper left \
+           --set notch_wrapper display=$INTERNAL_DISPLAY \
+                             drawing=off script="$PLUGIN_DIR/notch_wrap.sh" \
+           --subscribe notch_wrapper aerospace_workspace_change front_app_switched space_windows_change
+
+
+##### Force all scripts to run the first time (never do this in a script) #####
+sketchybar --update

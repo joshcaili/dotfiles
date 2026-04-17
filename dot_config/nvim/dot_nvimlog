@@ -1,0 +1,9 @@
+WRN 2026-03-21T13:35:09.440 ?.7981     vim_mktempdir:3325: tempdir create failed: operation not permitted: /var/folders/pz/vqd4xhqx1_vfpdwxzpx0twhm0000gn/T/nvim.jesh/XXXXXX
+WRN 2026-03-21T13:36:31.251 ?.16502    vim_mktempdir:3325: tempdir create failed: operation not permitted: /var/folders/pz/vqd4xhqx1_vfpdwxzpx0twhm0000gn/T/nvim.jesh/XXXXXX
+WRN 2026-03-21T13:57:10.676 ?.82290    vim_mktempdir:3325: tempdir create failed: operation not permitted: /var/folders/pz/vqd4xhqx1_vfpdwxzpx0twhm0000gn/T/nvim.jesh/XXXXXX
+WRN 2026-03-21T14:16:24.446 ?.2233     vim_mktempdir:3325: tempdir create failed: operation not permitted: /var/folders/pz/vqd4xhqx1_vfpdwxzpx0twhm0000gn/T/nvim.jesh/XXXXXX
+WRN 2026-03-21T14:17:42.684 ?.2848     vim_mktempdir:3325: tempdir create failed: operation not permitted: /var/folders/pz/vqd4xhqx1_vfpdwxzpx0twhm0000gn/T/nvim.jesh/XXXXXX
+WRN 2026-03-21T14:58:29.755 ?.34571    vim_mktempdir:3325: tempdir create failed: operation not permitted: /var/folders/pz/vqd4xhqx1_vfpdwxzpx0twhm0000gn/T/nvim.jesh/XXXXXX
+WRN 2026-03-21T14:58:52.027 ?.35150    vim_mktempdir:3325: tempdir create failed: operation not permitted: /var/folders/pz/vqd4xhqx1_vfpdwxzpx0twhm0000gn/T/nvim.jesh/XXXXXX
+WRN 2026-03-21T14:58:58.218 ?.35443    vim_mktempdir:3325: tempdir create failed: operation not permitted: /var/folders/pz/vqd4xhqx1_vfpdwxzpx0twhm0000gn/T/nvim.jesh/XXXXXX
+WRN 2026-03-21T15:18:10.521 ?.14140    vim_mktempdir:3325: tempdir create failed: operation not permitted: /var/folders/pz/vqd4xhqx1_vfpdwxzpx0twhm0000gn/T/nvim.jesh/XXXXXX
